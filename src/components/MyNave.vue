@@ -2,7 +2,7 @@
   <nav class="my-nav">
     <div class="links">
       <ul>
-        <li>Heloo</li>
+        <li>Heloo Hassan</li>
       </ul>
     </div>
   </nav>
