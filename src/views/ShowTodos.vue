@@ -41,24 +41,14 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
-//Data
-const todosList = ref([]);
+// import mixins file
+import todosMixin from "@/Mixins/todo";
+const { todosList, addToLocalSt } = todosMixin();
 
-//methods
-const updateTodos = () => {
-  if (localStorage.getItem("Todos")) {
-    todosList.value = JSON.parse(localStorage.getItem("Todos"));
-  }
-};
 //Delete
 const deleteTodo = (index) => {
   todosList.value.splice(index, 1);
   addToLocalSt();
-};
-// Set To Local Storage
-const addToLocalSt = () => {
-  localStorage.setItem("Todos", JSON.stringify(todosList.value));
 };
 
 //Mark As Completed
@@ -67,9 +57,6 @@ const markCompleted = (todo) => {
   // update data in local storage
   addToLocalSt();
 };
-onMounted(() => {
-  updateTodos();
-});
 </script>
 
 <style scoped lang="scss">

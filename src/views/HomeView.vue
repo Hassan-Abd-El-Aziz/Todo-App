@@ -17,24 +17,30 @@
   </div>
 </template>
 <script setup>
-import { onMounted, ref } from "vue";
+import { ref } from "vue";
+// import mixins file
+import todosMixin from "@/Mixins/todo";
+const { todosList, addToLocalSt } = todosMixin();
+
 //Data
-const todoList = ref([]);
 const todoObj = ref({
   id: "",
   text: "",
   from: "",
   to: "",
   createdAt: "",
+  isCompleted: false,
 });
 //Methods
 
 //Add Todo
 const addData = () => {
-  todoObj.value.id = todoList.value.length + 1;
+  todoObj.value.id = todosList.value.length + 1;
   todoObj.value.createdAt = new Date(); // Add Date now
-  todoList.value.push(todoObj.value);
+  todosList.value.push(todoObj.value);
+
   addToLocalSt();
+
   alert("Todo Was Added Successfully");
   todoObj.value = {
     id: "",
@@ -42,22 +48,9 @@ const addData = () => {
     from: "",
     to: "",
     createdAt: "",
+    isCompleted: false,
   };
 };
-// Set To Local Storage
-const addToLocalSt = () => {
-  localStorage.setItem("Todos", JSON.stringify(todoList.value));
-};
-//update Todo List Becuse when reload page dont delete old todo list
-const updateTodos = () => {
-  if (localStorage.getItem("Todos")) {
-    todoList.value = JSON.parse(localStorage.getItem("Todos"));
-  }
-};
-//Hooks
-onMounted(() => {
-  updateTodos();
-});
 </script>
 <style scoped lang="scss">
 form {
