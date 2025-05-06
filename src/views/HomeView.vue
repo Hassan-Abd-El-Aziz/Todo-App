@@ -82,12 +82,12 @@ form {
     margin-left: 20px;
   }
   input[type="date"] {
-    padding: 10px 20px;
-    font-size: 15px;
+    padding: 10px;
+    font-size: 12px;
     font-weight: bold;
     border: 1px solid green;
     border-radius: 7px;
-    margin: 15px;
+    margin: 10px;
   }
 }
 </style>
